@@ -1,5 +1,6 @@
-package com.api.funcionario.model;
+package com.api.funcionario.entity.model;
 
+import com.api.funcionario.entity.enums.PermissoesEnum;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -21,9 +22,22 @@ public class FuncionarioModel implements Serializable {
     @Column(nullable = false, unique = true)
     private String cpf;
     @Column(nullable = false)
-    private String permissoes;
-    @Column(nullable = false, columnDefinition ="int default 1")
-    private int status;
+    private PermissoesEnum permissao;
+    @Column(nullable = false)
+    private Integer status;
+
+    public FuncionarioModel(UUID id, String nome, String dataNascimento, String email, String cpf, PermissoesEnum permissao, Integer status) {
+        this.id = id;
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.email = email;
+        this.cpf = cpf;
+        this.permissao = permissao;
+        this.status = status;
+    }
+
+    public FuncionarioModel() {
+    }
 
     public UUID getId() {
         return id;
@@ -65,19 +79,19 @@ public class FuncionarioModel implements Serializable {
         this.cpf = cpf;
     }
 
-    public String getPermissoes() {
-        return permissoes;
+    public PermissoesEnum getPermissao() {
+        return permissao;
     }
 
-    public void setPermissoes(String permissoes) {
-        this.permissoes = permissoes;
+    public void setPermissao(PermissoesEnum permissao) {
+        this.permissao = permissao;
     }
 
-    public int getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 }
