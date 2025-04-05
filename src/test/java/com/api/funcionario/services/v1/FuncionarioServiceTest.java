@@ -21,6 +21,7 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class FuncionarioServiceTest {
+
     @InjectMocks
     private FuncionarioService service;
     @Mock
@@ -60,6 +61,7 @@ class FuncionarioServiceTest {
         ResponseEntity<BaseDto> resultado= service.resgistrarFuncionario(requestDto);
         assertTrue(existePorEmail);
         assertTrue(existePorCpf);
+        assertEquals(HttpStatus.CONFLICT,resultado.getStatusCode());
         assertEquals(HttpStatus.CONFLICT,resultado.getStatusCode());
     }
 
